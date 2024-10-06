@@ -1,0 +1,69 @@
+﻿<Window x:Class="WpfApp1.SecurityCodeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mã bảo mật" Height="450" Width="800">
+    <Grid>
+        <!-- Định nghĩa 2 cột: 1 cột cho hình ảnh và 1 cột cho form nhập mã -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Cột 1: Hình ảnh -->
+        <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="/images/mat_biec.jpg" Stretch="Fill" Height="450" Width="400"/>
+        </StackPanel>
+
+        <!-- Cột 2: Form nhập mã bảo mật -->
+        <!--Tiêu đề-->
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="KHÔI PHỤC MẬT KHẨU" FontSize="20" FontWeight="Bold" Padding="30"/>
+            <TextBlock Text="Mã bảo mật bao gồm 5 chữ số được gửi đến Email" 
+                       TextWrapping="Wrap" Width="300" FontSize="18" 
+                       HorizontalAlignment="Center" Margin="0,0,0,20"/>
+            <!-- Sử dụng Grid để sắp xếp Label và TextBox ngang hàng -->
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Mã bảo mật" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox x:Name="securityCodeTextBox" Width="200" Margin="8,0,10,0" Grid.Column="1"/>
+            </Grid>
+
+            <!-- Button Xác nhận với style đã định nghĩa -->
+            <Button Content="Xác nhận" Width="150" Height="35" 
+                    Click="ConfirmCodeButton_Click" 
+                    HorizontalAlignment="Center" Margin="0,10,0,0" 
+                    Background="Brown" Foreground="White" 
+                    BorderBrush="Brown" BorderThickness="1"
+                    FontSize="18">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="15" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <!-- Thông báo -->
+            <TextBlock x:Name="confirmationMessageTextBlock" Foreground="Red" FontSize="12" 
+                       HorizontalAlignment="Center" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
